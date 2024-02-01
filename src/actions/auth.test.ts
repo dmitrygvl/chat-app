@@ -1,6 +1,6 @@
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { AppDispatch } from '../store/store';
-import { signedIn, signedOut, startListeningToAuthChanges } from './auth';
+import { signedIn, signedOut, listenToAuth } from './auth';
 
 jest.mock('firebase/auth', () => {
   const originalModule = jest.requireActual('firebase/auth');
@@ -35,10 +35,10 @@ describe('check module auth', () => {
     expect(result.payload.uid).toBeNull();
   });
 
-  it('check startListeningToAuthChanges', () => {
-    const dispath: AppDispatch = jest.fn();
+  it('check listenToAuth', () => {
+    const dispatch: AppDispatch = jest.fn();
 
-    startListeningToAuthChanges()(dispath);
+    listenToAuth()(dispatch);
     expect(onAuthStateChanged).toHaveBeenCalled();
   });
 });

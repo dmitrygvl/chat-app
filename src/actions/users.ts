@@ -20,7 +20,7 @@ export const addUser = (user: IUser) => {
   };
 };
 
-export const startListeningForUsers = () => {
+export const listenToUsers = () => {
   return (dispatch: AppDispatch) => {
     onChildAdded(usersRef, (snapshot) => {
       dispatch(addUser(snapshot.val() as IUser));

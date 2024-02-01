@@ -56,7 +56,7 @@ export const createMessage = (
   update(ref(database, `messages/${mid}`), message);
 };
 
-export const startListeningForMessages = () => {
+export const listenToMessages = () => {
   return (dispatch: AppDispatch) => {
     onChildAdded(messagesRef, (snapshot) => {
       if (isUserSignedIn()) {

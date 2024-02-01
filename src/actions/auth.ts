@@ -53,7 +53,7 @@ export const signedOut = () => {
   };
 };
 
-export const startListeningToAuthChanges = () => {
+export const listenToAuth = () => {
   return (dispatch: AppDispatch) => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {

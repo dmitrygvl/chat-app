@@ -4,7 +4,7 @@ import {
   createMessage,
   clearMessages,
   loadMessages,
-  startListeningForMessages,
+  listenToMessages,
 } from './messages';
 
 jest.mock('firebase/database', () => {
@@ -57,10 +57,10 @@ describe('check module messages', () => {
     expect(result).toBe('Hello!');
   });
 
-  it('check startListeningForMessages', () => {
-    const dispath: AppDispatch = jest.fn();
+  it('check listenToMessages', () => {
+    const dispatch: AppDispatch = jest.fn();
 
-    startListeningForMessages()(dispath);
+    listenToMessages()(dispatch);
     expect(onChildAdded).toHaveBeenCalled();
   });
 });

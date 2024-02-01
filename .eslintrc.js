@@ -39,6 +39,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'no-param-reassign': 'off',
     'no-console': 'off',
+    'no-useless-concat': 'off',
     'no-eval': 'off',
     'no-promise-executor-return': 'off',
     'no-use-before-define': 'off',
