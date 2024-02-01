@@ -1,6 +1,6 @@
-import type { AnyAction } from 'redux';
+import { AnyAction } from 'redux';
 import initialState from '../initialState';
-import { IUsers } from '../../../types/types';
+import { IUsers } from '../../types';
 
 export default function usersReducer(
   state = initialState.users,

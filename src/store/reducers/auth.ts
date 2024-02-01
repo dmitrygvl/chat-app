@@ -1,6 +1,6 @@
-import type { AnyAction } from 'redux';
+import { AnyAction } from 'redux';
 import initialState from '../initialState';
-import { IAuth } from '../../../types/types';
+import { IAuth } from '../../types';
 
 export default function authReducer(
   state = initialState.auth,

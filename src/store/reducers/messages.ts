@@ -1,6 +1,6 @@
-import type { AnyAction } from 'redux';
+import { AnyAction } from 'redux';
 import initialState from '../initialState';
-import { IMessages } from '../../../types/types';
+import { IMessages } from '../../types';
 
 export default function messagesReducer(
   state = initialState.messages,
