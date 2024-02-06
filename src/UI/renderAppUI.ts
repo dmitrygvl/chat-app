@@ -5,6 +5,7 @@ import { fixProfilePicSize } from '../modules/fixProfilePicSize';
 import { renderMessage } from './renderMessage';
 import { createMessage } from '../actions/messages';
 import { isUserSignedIn } from '../firebase/firebaseConnector';
+import { updateUI } from './updateUI';
 import { emoji } from '../modules/emoji';
 
 export function renderAppUI(el: HTMLDivElement, store: RootState) {
@@ -117,8 +118,15 @@ export function renderAppUI(el: HTMLDivElement, store: RootState) {
   ) as HTMLTextAreaElement;
   const messageEmoji = el.querySelector('#message-emoji') as HTMLDivElement;
 
-  signOutButtonElement?.addEventListener('click', comeOut);
-  signInButtonElement?.addEventListener('click', signIn);
+  signOutButtonElement?.addEventListener('click', () => {
+    comeOut();
+    updateUI();
+  });
+
+  signInButtonElement?.addEventListener('click', async () => {
+    await signIn();
+    updateUI();
+  });
 
   const userPicElement = el.querySelector('#user-pic') as HTMLDivElement;
 

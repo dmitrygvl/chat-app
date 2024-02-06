@@ -41,6 +41,7 @@ module.exports = {
     'no-console': 'off',
     'no-useless-concat': 'off',
     'no-eval': 'off',
+    'import/no-cycle': 'off',
     'no-promise-executor-return': 'off',
     'no-use-before-define': 'off',
     'no-restricted-syntax': 'off',
