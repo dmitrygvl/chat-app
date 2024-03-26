@@ -1,34 +1,41 @@
-export function createMessage(
-  messageListElement: HTMLDivElement,
-  id: string,
-  timestamp: number,
-) {
+export function createMessage(id: string, timestamp: number): HTMLDivElement {
   const container = document.createElement('div');
   container.innerHTML = `<div class="message-container"><div class="spacing"><div class="pic"></div></div><div class="message"></div><div class="name"></div></div>`;
-  const div = container.firstChild as HTMLDivElement;
-  div.setAttribute('id', id);
+  const messageElement = container.firstChild as HTMLDivElement;
+  messageElement.setAttribute('id', id);
+  messageElement.setAttribute('timestamp', String(timestamp || Date.now()));
+  return messageElement;
+}
 
-  timestamp = timestamp || Date.now();
-  div.setAttribute('timestamp', String(timestamp));
-
+export function insertNewMessage(
+  messageListElement: HTMLDivElement,
+  newMessageElement: HTMLDivElement,
+): void {
   const existingMessages = messageListElement.children;
-  if (existingMessages.length === 0) {
-    messageListElement.appendChild(div);
-  } else {
-    let messageListNode = existingMessages[0];
+  let inserted = false;
 
-    while (messageListNode) {
-      const messageListNodeTime = messageListNode.getAttribute('timestamp');
+  for (let i = 0; i < existingMessages.length; i++) {
+    const currentMessage = existingMessages[i];
+    const currentMessageTime = Number(currentMessage.getAttribute('timestamp'));
 
-      if (Number(messageListNodeTime) > timestamp) {
-        break;
-      }
-
-      messageListNode = messageListNode.nextSibling as HTMLDivElement;
+    if (
+      Number(newMessageElement.getAttribute('timestamp')) < currentMessageTime
+    ) {
+      messageListElement.insertBefore(newMessageElement, currentMessage);
+      inserted = true;
+      break;
     }
-
-    messageListElement.insertBefore(div, messageListNode);
   }
 
-  return div;
+  if (!inserted) {
+    // Если не найдено подходящее место, добавить в конец списка
+    messageListElement.appendChild(newMessageElement);
+  }
 }
+
+// Использование
+// const messageListElement = document.querySelector('.messages') as HTMLDivElement;
+// const newMessageId = 'msg_1';
+// const newMessageTimestamp = Date.now();
+// const newMessageElement = createNewMessage(newMessageId, newMessageTimestamp);
+// insertNewMessage(messageListElement, newMessageElement);

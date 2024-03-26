@@ -1,4 +1,3 @@
-import { signInWithRedirect } from 'firebase/auth';
 import store from '../store/store';
 import { renderAppUI } from './renderAppUI';
 

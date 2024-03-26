@@ -12,7 +12,7 @@ export function renderMessage(
 ) {
   const messageListElement = el.querySelector('#messages') as HTMLDivElement;
 
-  const div = createMessage(messageListElement, id, timestamp);
+  const div = createMessage(id, timestamp);
 
   if (picUrl) {
     const picDiv = div.querySelector('.pic') as HTMLDivElement;
